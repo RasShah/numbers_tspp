@@ -1,0 +1,19 @@
+name: Generate and Sort Numbers
+
+on:
+  workflow_dispatch:  # Позволяет запускать вручную
+  push:               # Автозапуск при пуше в любую ветку
+
+jobs:
+  generate-numbers:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Generate and sort numbers
+      run: |
+        echo "=== Генерация 10 случайных чисел ==="
+        numbers=$(for i in {1..10}; do echo $(( RANDOM % 100 + 1 )); done)
+        echo "$numbers"
+        
+        echo "=== СОРТИРОВКА ==="
+        echo "$numbers" | tr ' ' '\n' | sort -n
